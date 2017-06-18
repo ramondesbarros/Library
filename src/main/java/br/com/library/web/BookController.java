@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.library.domain.Book;
 import br.com.library.domain.User;
 import br.com.library.service.BookService;
+import br.com.library.validation.BookValidation;
 
 @RestController
 @RequestMapping("/book")
@@ -21,6 +22,9 @@ public class BookController {
 	
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private BookValidation bookValidation;
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Book>> list() {
@@ -36,7 +40,10 @@ public class BookController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST,  consumes = "application/json")
     public String saveBook(@RequestBody  Book book) {
-        
+		boolean result = bookValidation.dataValidation(book);
+		if (result == false) {
+			return "Error! Todos os dados devem estar preenchidos";
+		}
         bookService.saveBook(book);
         return "redirect:/book/" + book.getIdBook();
     }

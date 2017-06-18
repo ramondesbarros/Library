@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.library.domain.Magazine;
 import br.com.library.service.MagazineService;
+import br.com.library.validation.MagazineValidation;
 
 @RestController
 @RequestMapping("/magazine")
@@ -20,6 +21,9 @@ public class MagazineController {
 	
 	@Autowired
 	private MagazineService magazineService;
+	
+	@Autowired
+	private MagazineValidation magazineValidation;
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Magazine>> list() {
@@ -35,7 +39,10 @@ public class MagazineController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST,  consumes = "application/json")
     public String saveMagazine(@RequestBody  Magazine magazine) {
-        
+		boolean result = magazineValidation.dataValidation(magazine);
+		if (result == false) {
+			return "Error! Todos os dados devem estar preenchidos";
+		}
         magazineService.saveMagazine(magazine);
         return "redirect:/magazine/" + magazine.getIdMagazine();
     }

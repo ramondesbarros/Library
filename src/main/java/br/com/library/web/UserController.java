@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.library.domain.User;
 import br.com.library.service.UserService;
+import br.com.library.validation.UserValidation;
 
 @RestController
 @RequestMapping("/user")
@@ -20,6 +21,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserValidation userValidation;
 	
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<User>> list() {
@@ -35,7 +39,10 @@ public class UserController {
     
     @RequestMapping(value = "/save", method = RequestMethod.POST,  consumes = "application/json")
     public String saveUser(@RequestBody  User user) {
-        
+    	boolean result = userValidation.dataValidation(user);
+    	if (result == false) {
+    		return "Error! Todos os dados devem estar preenchidos";
+    	}
         userService.saveUser(user);
         return "redirect:/user/" + user.getIdUser();
     }
