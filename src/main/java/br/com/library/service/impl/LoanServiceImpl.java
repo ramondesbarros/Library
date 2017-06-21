@@ -1,5 +1,7 @@
 package br.com.library.service.impl;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,4 +35,8 @@ public class LoanServiceImpl implements LoanService {
 		loanReposirory.delete(id);
 	}
 
+	@Override
+	public Iterable<Loan> allLoanList(Date currentDate) {
+		return loanReposirory.allLoanList(currentDate);
+	}
 }

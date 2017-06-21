@@ -26,6 +26,7 @@ public class Loan {
 	
 	private Date loanDate;
 	private Date returnDate;
+	private boolean loanStatus;
 	
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
@@ -61,6 +62,14 @@ public class Loan {
 		this.returnDate = returnDate;
 	}
 
+	public boolean isLoanStatus() {
+		return loanStatus;
+	}
+
+	public void setLoanStatus(boolean loanStatus) {
+		this.loanStatus = loanStatus;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -87,8 +96,8 @@ public class Loan {
 
 	@Override
 	public String toString() {
-		return "Loan [idLoan=" + idLoan + ", loanDate=" + loanDate + ", returnDate=" + returnDate + ", user=" + user
-				+ ", book=" + book + ", magazine=" + magazine + "]";
+		return "Loan [idLoan=" + idLoan + ", loanDate=" + loanDate + ", returnDate=" + returnDate + ", loanStatus="
+				+ loanStatus + ", user=" + user + ", book=" + book + ", magazine=" + magazine + "]";
 	}
 
 	@Override
@@ -98,6 +107,7 @@ public class Loan {
 		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((idLoan == null) ? 0 : idLoan.hashCode());
 		result = prime * result + ((loanDate == null) ? 0 : loanDate.hashCode());
+		result = prime * result + (loanStatus ? 1231 : 1237);
 		result = prime * result + ((magazine == null) ? 0 : magazine.hashCode());
 		result = prime * result + ((returnDate == null) ? 0 : returnDate.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
@@ -127,6 +137,8 @@ public class Loan {
 			if (other.loanDate != null)
 				return false;
 		} else if (!loanDate.equals(other.loanDate))
+			return false;
+		if (loanStatus != other.loanStatus)
 			return false;
 		if (magazine == null) {
 			if (other.magazine != null)

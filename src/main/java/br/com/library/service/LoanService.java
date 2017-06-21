@@ -1,5 +1,7 @@
 package br.com.library.service;
 
+import java.util.Date;
+
 import br.com.library.domain.Loan;
 
 public interface LoanService {
@@ -11,4 +13,6 @@ public interface LoanService {
     Loan saveLoan(Loan loan);
     
     void deleteLoan(Long id);
+    
+    Iterable <Loan> allLoanList(Date currentDate);
 }

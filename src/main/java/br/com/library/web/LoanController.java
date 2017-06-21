@@ -1,5 +1,7 @@
 package br.com.library.web;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.library.domain.Loan;
-import br.com.library.domain.Magazine;
 import br.com.library.service.LoanService;
 
 @RestController
@@ -24,7 +25,8 @@ public class LoanController {
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Loan>> list() {
-       
+		ArrayList<Loan> loanList = new ArrayList<>();
+		loanList = (ArrayList<Loan>) loanService.listAllLoan();
        return new ResponseEntity<List<Loan>>((List<Loan>) loanService.listAllLoan(), HttpStatus.FOUND);
     }
 	
@@ -68,4 +70,10 @@ public class LoanController {
         loanService.deleteLoan(id);
         return "redirect:/loans";
     }
+	
+	@RequestMapping(value = "/all/delay", method = RequestMethod.GET)
+	public ResponseEntity<List<Loan>> allLoanList() {
+		Date date = new Date();
+		return new ResponseEntity<List<Loan>>((List<Loan>) loanService.allLoanList(date), HttpStatus.FOUND);
+	}
 }
