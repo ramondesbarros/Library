@@ -1,8 +1,8 @@
 package br.com.library.domain;
 
 import java.util.Date;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,11 +32,13 @@ public class Loan {
     @JoinColumn(name="user_id", nullable=false)
     private User user;
     
-    @OneToMany(mappedBy="loan")
-    private Set<Book> book;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id")
+    private Book book;
     
-    @OneToMany(mappedBy="loan")
-    private Set<Magazine> magazine;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "magazine_id")
+    private Magazine magazine;
 
 	public Long getIdLoan() {
 		return idLoan;
@@ -78,19 +80,19 @@ public class Loan {
 		this.user = user;
 	}
 
-	public Set<Book> getBook() {
+	public Book getBook() {
 		return book;
 	}
 
-	public void setBook(Set<Book> book) {
+	public void setBook(Book book) {
 		this.book = book;
 	}
 
-	public Set<Magazine> getMagazine() {
+	public Magazine getMagazine() {
 		return magazine;
 	}
 
-	public void setMagazine(Set<Magazine> magazine) {
+	public void setMagazine(Magazine magazine) {
 		this.magazine = magazine;
 	}
 

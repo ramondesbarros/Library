@@ -34,9 +34,4 @@ public class LoanServiceImpl implements LoanService {
 	public void deleteLoan(Long id) {
 		loanReposirory.delete(id);
 	}
-
-	@Override
-	public Iterable<Loan> allLoanList(Date currentDate) {
-		return loanReposirory.allLoanList(currentDate);
-	}
 }

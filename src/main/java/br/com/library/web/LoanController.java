@@ -1,7 +1,6 @@
 package br.com.library.web;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,11 +68,5 @@ public class LoanController {
     public String deleteLoan(@PathVariable Long id) {
         loanService.deleteLoan(id);
         return "redirect:/loans";
-    }
-	
-	@RequestMapping(value = "/all/delay", method = RequestMethod.GET)
-	public ResponseEntity<List<Loan>> allLoanList() {
-		Date date = new Date();
-		return new ResponseEntity<List<Loan>>((List<Loan>) loanService.allLoanList(date), HttpStatus.FOUND);
-	}
+    }	
 }
