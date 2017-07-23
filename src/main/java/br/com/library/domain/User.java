@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User implements Serializable {
 
-    private static final long serialVersionUID = -06072017001L;
+	private static final long serialVersionUID = -06072017001L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +24,7 @@ public class User implements Serializable {
 
     private String nameUser;
     private String registrationNumberUser;
-    private Course courseUser;
+    private CourseUniversity courseUser;
     private CoursePeriod studyPeriodUser;
 
     @OneToMany(mappedBy = "user")
@@ -54,11 +54,11 @@ public class User implements Serializable {
         this.registrationNumberUser = registrationNumberUser;
     }
 
-    public Course getCourseUser() {
+    public CourseUniversity getCourseUser() {
         return courseUser;
     }
 
-    public void setCourseUser(Course courseUser) {
+    public void setCourseUser(CourseUniversity courseUser) {
         this.courseUser = courseUser;
     }
 

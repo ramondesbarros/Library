@@ -1,6 +1,7 @@
 package br.com.library.service;
 
 import br.com.library.domain.Loan;
+import br.com.library.domain.User;
 
 public interface LoanService {
 	
@@ -10,5 +11,7 @@ public interface LoanService {
     
     Loan saveLoan(Loan loan);
     
-    void deleteLoan(Long id);    
+    void deleteLoan(Long id);  
+    
+    int findByUser(User user);
 }

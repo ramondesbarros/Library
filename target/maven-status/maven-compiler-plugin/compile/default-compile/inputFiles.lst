@@ -16,11 +16,12 @@
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/service/MagazineService.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/web/BookController.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/validation/BookValidation.java
-/home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/Application.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/validation/MagazineValidation.java
+/home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/Application.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/integration/MagazineRepository.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/domain/Book.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/service/impl/MagazineServiceImpl.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/integration/BookRepository.java
-/home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/domain/Course.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/service/UserService.java
+/home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/domain/Course.java
+/home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/domain/CourseUniversity.java

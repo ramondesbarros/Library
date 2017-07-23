@@ -1,11 +1,10 @@
 package br.com.library.service.impl;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.library.domain.Loan;
+import br.com.library.domain.User;
 import br.com.library.integration.LoanRepository;
 import br.com.library.service.LoanService;
 
@@ -33,5 +32,10 @@ public class LoanServiceImpl implements LoanService {
 	@Override
 	public void deleteLoan(Long id) {
 		loanReposirory.delete(id);
+	}
+
+	@Override
+	public int findByUser(User user) {
+		return loanReposirory.findByUser(user);
 	}
 }

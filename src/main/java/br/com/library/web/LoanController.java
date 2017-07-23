@@ -19,7 +19,9 @@ import br.com.library.service.LoanService;
 @RestController
 @RequestMapping("/loan")
 public class LoanController {
-
+	
+//	int max = 4;
+	
     @Autowired
     private LoanService loanService;
 
@@ -43,6 +45,9 @@ public class LoanController {
         today.add(Calendar.DATE, 7);
         loan.setReturnDate(today);
         loanService.saveLoan(loan);
+//        if(loanService.findByUser(loan.getUser()) <= max) {
+//        	return "O usuario nao pode pegar mais livros!";
+//        }
         return "redirect:/loan/" + loan.getIdLoan();
     }
 
@@ -55,8 +60,8 @@ public class LoanController {
         // newUser.setNameUser(user.getNameUser());
         // }
         // if (user.getRegistrationNumberUser() != null){
-        // newUser.setRegistrationNumberUser(user.getRegistrationNumberUser());
-        // }
+        // newUser.setRegistrationNumberUs1e205 /48(user.getRegistrationNumberUser());
+    	// }
         // if (user.getCourseNameUser() != null){
         // newUser.setCourseNameUser(user.getCourseNameUser());
         // }
