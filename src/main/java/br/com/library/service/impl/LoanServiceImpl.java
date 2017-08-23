@@ -35,7 +35,7 @@ public class LoanServiceImpl implements LoanService {
 	}
 
 	@Override
-	public int findByUser(User user) {
-		return loanReposirory.findByUser(user);
+	public Long countByUser(Long id) {
+		return loanReposirory.countByUser(id);
 	}
 }

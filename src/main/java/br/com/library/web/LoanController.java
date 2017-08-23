@@ -45,9 +45,11 @@ public class LoanController {
         today.add(Calendar.DATE, 7);
         loan.setReturnDate(today);
         loanService.saveLoan(loan);
-//        if(loanService.findByUser(loan.getUser()) <= max) {
-//        	return "O usuario nao pode pegar mais livros!";
-//        }
+        
+        if(loanService.countByUser(loan.getUser().getIdUser()) < 4) {
+        	return "O livro não pode ser emprestado!";
+        }
+        
         return "redirect:/loan/" + loan.getIdLoan();
     }
 

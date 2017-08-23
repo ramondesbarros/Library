@@ -13,5 +13,5 @@ public interface LoanService {
     
     void deleteLoan(Long id);  
     
-    int findByUser(User user);
+    Long countByUser(Long id);
 }
