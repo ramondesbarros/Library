@@ -40,13 +40,13 @@ public class LoanController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = "application/json")
     public String saveLoan(@RequestBody Loan loan) {
-        Calendar today = Calendar.getInstance();
-        loan.setLoanDate(today);
-        today.add(Calendar.DATE, 7);
-        loan.setReturnDate(today);
+//        Calendar today = Calendar.getInstance();
+//        loan.setLoanDate(today);
+//        today.add(Calendar.DATE, 7);
+//        loan.setReturnDate(today);
         loanService.saveLoan(loan);
-        
-        if(loanService.countByUser(loan.getUser().getIdUser()) < 4) {
+        System.out.println("-----------(" +loanService.countByUser(loan.getUser().getIdUser()) +")--------------");
+        if(loanService.countByUser(loan.getUser().getIdUser()) >= 4) {
         	return "O livro não pode ser emprestado!";
         }
         
