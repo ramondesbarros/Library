@@ -46,29 +46,7 @@ public class MagazineController {
         magazineService.saveMagazine(magazine);
         return "redirect:/magazine/" + magazine.getIdMagazine();
     }
-	
-	@RequestMapping(value = "/update", method = RequestMethod.PUT,  consumes = "application/json")
-    public String updateMagazine(@RequestBody  Magazine magazine) {
-
-//    	User newUser = new User();
-//        newUser = userService.getUserById(user.getIdUser());
-//        if (user.getNameUser() != null){
-//            newUser.setNameUser(user.getNameUser());
-//        }
-//        if (user.getRegistrationNumberUser() != null){
-//            newUser.setRegistrationNumberUser(user.getRegistrationNumberUser());
-//        }
-//        if (user.getCourseNameUser() != null){
-//            newUser.setCourseNameUser(user.getCourseNameUser());
-//        }
-//        if (user.getStudyPeriodUser() != null){
-//            newUser.setStudyPeriodUser(user.getStudyPeriodUser());
-//        }
-//        userService.saveUser(newUser);
-//        return "redirect:/user/update" + user.getIdUser();
-		return null;
-    }
-	
+		
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteMagazine(@PathVariable Long id) {
         magazineService.deleteMagazine(id);

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.library.domain.CoursePeriod;
+import br.com.library.domain.CourseUniversity;
 import br.com.library.domain.User;
 import br.com.library.service.UserService;
 import br.com.library.validation.UserValidation;
@@ -49,24 +51,23 @@ public class UserController {
     
     @RequestMapping(value = "/update", method = RequestMethod.PUT,  consumes = "application/json")
     public String updateUser(@RequestBody  User user) {
-
-//    	User newUser = new User();
-//        newUser = userService.getUserById(user.getIdUser());
-//        if (user.getNameUser() != null){
-//            newUser.setNameUser(user.getNameUser());
-//        }
-//        if (user.getRegistrationNumberUser() != null){
-//            newUser.setRegistrationNumberUser(user.getRegistrationNumberUser());
-//        }
-//        if (user.getCourseNameUser() != null){
-//            newUser.setCourseNameUser(user.getCourseNameUser());
-//        }
-//        if (user.getStudyPeriodUser() != null){
-//            newUser.setStudyPeriodUser(user.getStudyPeriodUser());
-//        }
-//        userService.saveUser(newUser);
-//        return "redirect:/user/update" + user.getIdUser();
-    	return null;
+    	    	
+    	User newUser = new User();
+        newUser = userService.getUserById(user.getIdUser());
+        if (user.getNameUser() != null){
+            newUser.setNameUser(user.getNameUser());
+        }
+        if (user.getRegistrationNumberUser() != null){
+            newUser.setRegistrationNumberUser(user.getRegistrationNumberUser());
+        }
+        if (user.getCourseUser() != null){
+            newUser.setCourseUser(user.getCourseUser());
+        }
+        if (user.getStudyPeriodUser() != null){
+            newUser.setStudyPeriodUser(user.getStudyPeriodUser());
+        }
+        userService.saveUser(newUser);
+        return "redirect:/user/update" + user.getIdUser();
     }
     
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

@@ -1,7 +1,6 @@
 package br.com.library.web;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +19,9 @@ import br.com.library.service.LoanService;
 @RequestMapping("/loan")
 public class LoanController {
 	
-//	int max = 4;
-	
     @Autowired
     private LoanService loanService;
-
+    
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Loan>> list() {
         ArrayList<Loan> loanList = new ArrayList<>();
@@ -51,28 +48,6 @@ public class LoanController {
         }
         
         return "redirect:/loan/" + loan.getIdLoan();
-    }
-
-    @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = "application/json")
-    public String updateLoan(@RequestBody Loan loan) {
-
-        // User newUser = new User();
-        // newUser = userService.getUserById(user.getIdUser());
-        // if (user.getNameUser() != null){
-        // newUser.setNameUser(user.getNameUser());
-        // }
-        // if (user.getRegistrationNumberUser() != null){
-        // newUser.setRegistrationNumberUs1e205 /48(user.getRegistrationNumberUser());
-    	// }
-        // if (user.getCourseNameUser() != null){
-        // newUser.setCourseNameUser(user.getCourseNameUser());
-        // }
-        // if (user.getStudyPeriodUser() != null){
-        // newUser.setStudyPeriodUser(user.getStudyPeriodUser());
-        // }
-        // userService.saveUser(newUser);
-        // return "redirect:/user/update" + user.getIdUser();
-        return null;
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

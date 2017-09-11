@@ -48,28 +48,6 @@ public class BookController {
         return "redirect:/book/" + book.getIdBook();
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = "application/json")
-    public String updateUser(@RequestBody User user) {
-
-        // User newUser = new User();
-        // newUser = userService.getUserById(user.getIdUser());
-        // if (user.getNameUser() != null){
-        // newUser.setNameUser(user.getNameUser());
-        // }
-        // if (user.getRegistrationNumberUser() != null){
-        // newUser.setRegistrationNumberUser(user.getRegistrationNumberUser());
-        // }
-        // if (user.getCourseNameUser() != null){
-        // newUser.setCourseNameUser(user.getCourseNameUser());
-        // }
-        // if (user.getStudyPeriodUser() != null){
-        // newUser.setStudyPeriodUser(user.getStudyPeriodUser());
-        // }
-        // userService.saveUser(newUser);
-        // return "redirect:/user/update" + user.getIdUser();
-        return null;
-    }
-
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
