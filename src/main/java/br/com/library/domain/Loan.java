@@ -60,8 +60,8 @@ public class Loan implements Serializable {
         return returnDate;
     }
 
-    public void setReturnDate(Calendar returnDate) {
-        this.returnDate = returnDate;
+    public void setReturnDate(Calendar returnDay) {
+        this.returnDate = returnDay;
     }
 
     public User getUser() {

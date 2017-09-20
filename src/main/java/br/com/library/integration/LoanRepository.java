@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import br.com.library.domain.Loan;
 
 @Repository
-public interface LoanRepository extends CrudRepository<Loan, Long>{
-	
-	Long countByUser(Long id);
+public interface LoanRepository extends CrudRepository<Loan, Long> {
+
+    Long countByUserIdUser(Long id);
 }

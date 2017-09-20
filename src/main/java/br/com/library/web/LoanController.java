@@ -1,6 +1,8 @@
 package br.com.library.web;
 
-import java.util.ArrayList;
+import static br.com.library.constants.LibraryConstants.LOAN_LIMIT;
+
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +20,14 @@ import br.com.library.service.LoanService;
 @RestController
 @RequestMapping("/loan")
 public class LoanController {
-	
+
     @Autowired
     private LoanService loanService;
-    
+
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Loan>> list() {
-        ArrayList<Loan> loanList = new ArrayList<>();
-        loanList = (ArrayList<Loan>) loanService.listAllLoan();
+        // ArrayList<Loan> loanList = new ArrayList<>();
+        // loanList = (ArrayList<Loan>) loanService.listAllLoan();
         return new ResponseEntity<List<Loan>>((List<Loan>) loanService.listAllLoan(), HttpStatus.FOUND);
     }
 
@@ -37,16 +39,16 @@ public class LoanController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = "application/json")
     public String saveLoan(@RequestBody Loan loan) {
-//        Calendar today = Calendar.getInstance();
-//        loan.setLoanDate(today);
-//        today.add(Calendar.DATE, 7);
-//        loan.setReturnDate(today);
+        Calendar today = Calendar.getInstance();
+        Calendar returnDate = Calendar.getInstance();
+        loan.setLoanDate(today);
+        returnDate.add(Calendar.DAY_OF_YEAR, 7);
+        loan.setReturnDate(returnDate);
         loanService.saveLoan(loan);
-        System.out.println("-----------(" +loanService.countByUser(loan.getUser().getIdUser()) +")--------------");
-        if(loanService.countByUser(loan.getUser().getIdUser()) >= 4) {
-        	return "O livro não pode ser emprestado!";
+        if (loanService.countByUser(loan.getUser().getIdUser()) >= LOAN_LIMIT) {
+            return "O livro não pode ser emprestado!";
         }
-        
+
         return "redirect:/loan/" + loan.getIdLoan();
     }
 
