@@ -13,41 +13,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.library.domain.Magazine;
 import br.com.library.service.MagazineService;
-import br.com.library.validation.MagazineValidation;
 
 @RestController
 @RequestMapping("/magazine")
 public class MagazineController {
-	
-	@Autowired
-	private MagazineService magazineService;
-	
-	@Autowired
-	private MagazineValidation magazineValidation;
-	
-	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
+
+    @Autowired
+    private MagazineService magazineService;
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<List<Magazine>> list() {
-       
-       return new ResponseEntity<List<Magazine>>((List<Magazine>) magazineService.listAllMagazine(), HttpStatus.FOUND);
+
+        return new ResponseEntity<List<Magazine>>((List<Magazine>) magazineService.listAllMagazine(), HttpStatus.FOUND);
     }
-	
-	@RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
+
+    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Magazine> showMagazine(@PathVariable Long id) {
-        
+
         return new ResponseEntity<Magazine>(magazineService.getMagazineById(id), HttpStatus.FOUND);
     }
-	
-	@RequestMapping(value = "/save", method = RequestMethod.POST,  consumes = "application/json")
-    public String saveMagazine(@RequestBody  Magazine magazine) {
-		boolean result = magazineValidation.dataValidation(magazine);
-		if (result == false) {
-			return "Error! Todos os dados devem estar preenchidos";
-		}
-        magazineService.saveMagazine(magazine);
-        return "redirect:/magazine/" + magazine.getIdMagazine();
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = "application/json")
+    public String saveMagazine(@RequestBody Magazine magazine) {
+        return magazineService.saveMagazine(magazine);
     }
-		
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteMagazine(@PathVariable Long id) {
         magazineService.deleteMagazine(id);
         return "redirect:/magazines";

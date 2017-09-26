@@ -1,5 +1,10 @@
 package br.com.library.service.impl;
 
+import static br.com.library.constants.LibraryConstants.LOAN_LIMIT;
+
+import java.util.Calendar;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +19,7 @@ public class LoanServiceImpl implements LoanService {
     private LoanRepository loanReposirory;
 
     @Override
-    public Iterable<Loan> listAllLoan() {
+    public List<Loan> listAllLoan() {
         return loanReposirory.findAll();
     }
 
@@ -24,8 +29,19 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public Loan saveLoan(Loan loan) {
-        return loanReposirory.save(loan);
+    public String saveLoan(Loan loan) {
+
+        if (countByUser(loan.getUser().getIdUser()) >= LOAN_LIMIT) {
+            return "O livro não pode ser emprestado!";
+        }
+        Calendar today = Calendar.getInstance();
+        Calendar returnDate = Calendar.getInstance();
+        loan.setLoanDate(today);
+        returnDate.add(Calendar.DAY_OF_YEAR, 7);
+        loan.setReturnDate(returnDate);
+        loanReposirory.save(loan);
+
+        return "redirect:/loan/" + loan.getIdLoan();
     }
 
     @Override
@@ -36,5 +52,10 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public Long countByUser(Long id) {
         return loanReposirory.countByUserIdUser(id);
+    }
+
+    @Override
+    public List<Loan> findByReturnDateLate() {
+        return loanReposirory.findByReturnDateLate();
     }
 }

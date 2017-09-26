@@ -25,3 +25,4 @@ br/com/library/integration/LoanRepository.class
 br/com/library/service/BookService.class
 br/com/library/service/MagazineService.class
 br/com/library/web/LoanController.class
+br/com/library/constants/LibraryConstants.class

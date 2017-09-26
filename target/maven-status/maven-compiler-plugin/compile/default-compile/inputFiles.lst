@@ -19,6 +19,7 @@
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/Application.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/validation/MagazineValidation.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/integration/MagazineRepository.java
+/home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/constants/LibraryConstants.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/domain/Book.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/service/impl/MagazineServiceImpl.java
 /home/ramondesbarros/projects/java/sts/Library/src/main/java/br/com/library/integration/BookRepository.java
